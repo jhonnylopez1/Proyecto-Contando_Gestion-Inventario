@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Insertar Artículo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-md" style="background-color: #e3f2fd;" data-bs-theme="light">
+    <div class="container-fluid">
+    
+      <div class="navbar-collapse justify-content-center" id="navbar-toggler">
+        
+        <ul class="navbar-nav ">
+          <li class="nav-item">
+            <a class="nav-link enlace" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link enlace" href="articulo.html">Articulos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="proveedores.html">Proveedores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="inventario.html">Ingresar Facturas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cajero.html">Cajeros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cliente.html">Clientes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ventas.html">Ventas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="stock.html">Stock</a>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+
+<!--Seccion Hero-->
+ <section class="hero align-items-stretch">
+  
+    <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-12 ">
+            <h1>Ingresar Articulo</h1>
+            <form id="articuloForm" class="card p-4 shadow bg_formulario">
+              <div class="row">
+                <div class="col-md-2 mb-3">
+                  <label class="form-label">ID Artículo:</label>
+                  <input class="form-control" type="number" name="id_articulo" required>
+                </div>
+              
+                <div class="col-md-3 mb-3">
+                  <label class="form-label">Nombre:</label>
+                  <input class="form-control" type="text" name="nombre_articulo" required>
+                </div>
+      
+                <div class="col-md-2 mb-3">
+                  <label class="form-label">Precio:</label>
+                  <input class="form-control" type="number" name="precio_articulo" required>
+                </div>
+      
+                <div class="col-md-2 mb-3">
+                  <label class="form-label">Marca:</label>
+                  <input class="form-control" type="text" name="marca_articulo" required>
+                </div>
+      
+                <div class="col-md-3 mb-3">
+                  <label class="form-label">Descripción:</label>
+                  <input class="form-control" type="text" name="descripcion_articulo" required>
+                </div>
+      
+              </div>
+              
+              <button type="submit" class="btn boton_submit col-md-3 mx-auto">Guardar Articulo</button>
+            </form>
+            <p id="respuesta"></p>
+          </div>
+        </div>
+      </div>
+</section>
+
+<section class="hero align-items-stretch">
+    <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-12 ">
+            <div class="table-responsive">
+                <h1>Articulos</h1>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="tabla_articulo">
+                            <thead>
+                            <tr>
+                                <th>ID Articulo</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Marca</th>
+                                <th>Descripcion</th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                
+            </div>
+          </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous">
+</script>
+<footer class="text-center py-5">
+    © 2025 Jhonny Andres Lopez | Todos los derechos reservados.
+</footer>
+<script src="./articulos.js"></script>
+</body>
+</html>

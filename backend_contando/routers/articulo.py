@@ -2,9 +2,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 
-from db import engine
-from modelos.articulo import Articulo
-from schemas.articulo import Articulos_Read
+from backend_contando.db import engine
+from backend_contando.modelos.articulo import Articulo
+from backend_contando.schemas.articulo import Articulos_Read
 
 #Se define el nombre de la ruta
 router = APIRouter(
