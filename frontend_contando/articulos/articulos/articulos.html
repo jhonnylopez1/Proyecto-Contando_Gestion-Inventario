@@ -76,6 +76,7 @@
                   <label class="form-label">Descripción:</label>
                   <input class="form-control" type="text" name="descripcion_articulo" required>
                 </div>
+
       
               </div>
               
@@ -86,6 +87,50 @@
         </div>
       </div>
 </section>
+
+<!--Actualizar Articulo-->
+<section class="her align-items-stretch">
+  <div class="container">
+    <div id="contenedorActualizar" style="display:none;"><!--oculta el display hasta que se haga una accion-->
+      <h1>Actualizar Articulo</h1>
+      <form id="actualizarArticuloForm" class="card p-4 shadow bg_formulario">
+        <input type="hidden" id="actualizar_id"> <!--hidden oculta al usuario este campo del formulario para que no vea el id-->
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Nombre:</label>
+            <input class="form-control" type="text" id="actualizar_nombre">
+          </div>
+          <div class="col-md-2 mb-3">
+            <label class="form-label">Precio:</label>
+            <input class="form-control" type="number" id="actualizar_precio">
+          </div>
+
+          <div class="col-md-2 mb-3">
+            <label class="form-label">Marca:</label>
+            <input class="form-control" type="text" id="actualizar_marca">
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Descripción:</label>
+            <input class="form-control" type="text" id="actualizar_descripcion">
+          </div>
+
+          <div class="col-md-2 mb-3">
+            <label class="form-label">Stock:</label>
+            <input class="form-control" type="number" id="actualizar_stock">
+          </div>
+        </div>
+
+        <button type="submit" class="btn boton_submit col-md-3 mx-auto">
+          Actualizar Articulo
+
+        </button>
+
+      </form>
+    </div>
+  </div>
+</section>
+
 
 <section class="hero align-items-stretch">
     <div class="container">
@@ -102,6 +147,7 @@
                                 <th>Precio</th>
                                 <th>Marca</th>
                                 <th>Descripcion</th>
+                                <th>Opciones</th>
                             </tr>
                             </thead>
                             <tbody></tbody>
