@@ -10,7 +10,8 @@ class Articulo(SQLModel, table=True):
     marca_articulo:str = Field(max_length=30)
     descripcion_articulo:str = Field(max_length=50)
     stock:Optional[int] = Field(default=0)
-    estado:int=1
+    estado:int
+    # estado:int=1 linea original
 
 
 

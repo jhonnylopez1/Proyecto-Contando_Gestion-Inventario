@@ -17,19 +17,31 @@ router = APIRouter(
 
 #Se define la ruta get para articulo
 @router.get("/", response_model=list[Articulos_Read])
-def get_articulos():
+def get_articulos(estado:int):
     try:
         with Session(engine) as session:
-            articulos = session.exec(select(Articulo).where(Articulo.estado == 1)).all() #Trae solo los articulos activos, con estado 1
+            articulos = session.exec(select(Articulo).where(Articulo.estado=={estado})).all() #Trae solo los articulos activos, con estado 1
             return articulos
     except Exception as e:
         raise HTTPException(
             status_code=500,
             detail=f"Error al obtener articulos:{str(e)}"
         )
+#RUTA ORIGINAL DEL GET SIN MODIFICAR
+# @router.get("/", response_model=list[Articulos_Read])
+# def get_articulos():
+#     try:
+#         with Session(engine) as session:
+#             articulos = session.exec(select(Articulo).where(Articulo.estado == 1)).all() #Trae solo los articulos activos, con estado 1
+#             return articulos
+#     except Exception as e:
+#         raise HTTPException(
+#             status_code=500,
+#             detail=f"Error al obtener articulos:{str(e)}"
+#         )
 
 #Se define la ruta para eliminar un articulo
-@router.delete("/{id_articulo}",response_model=Articulos_Read)
+@router.delete("/{id_articulo}")#Aqui no lleva response model, porque no es necesario devolver un articulo, si no solo una respuesta
 def eliminar_articulo(id_articulo:int):
     try:
         with Session(engine) as session:
@@ -69,6 +81,8 @@ def actualizar_articulo(id_articulo:int, data:Articulos_Actualizar):
             session.commit()
             session.refresh(articulo)
 
+            return articulo
+
 ##############NOTA: ya quedo el router, la proxima vez debo aprender a conectar esto con el Frontend
 
     except Exception as e:
@@ -83,12 +97,11 @@ def crear_articulo(data:ArticuloCrear):
     try:
         with Session(engine) as session:
             nuevo_articulo = Articulo(
-                id_articulo=data.id_articulo,
                 nombre_articulo=data.nombre_articulo,
                 precio_articulo=data.precio_articulo,
                 marca_articulo=data.marca_articulo,
                 descripcion_articulo=data.descripcion_articulo,
-                stock=data.stock if data.stock is not None else 0,
+                stock=0,
                 estado=1
             )
             session.add(nuevo_articulo)

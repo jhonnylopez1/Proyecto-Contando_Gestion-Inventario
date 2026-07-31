@@ -52,10 +52,6 @@
             <h1>Ingresar Articulo</h1>
             <form id="articuloForm" class="card p-4 shadow bg_formulario">
               <div class="row">
-                <div class="col-md-2 mb-3">
-                  <label class="form-label">ID Artículo:</label>
-                  <input class="form-control" type="number" name="id_articulo" required>
-                </div>
               
                 <div class="col-md-3 mb-3">
                   <label class="form-label">Nombre:</label>
@@ -88,13 +84,18 @@
       </div>
 </section>
 
+<div class="d-flex justify-content-center align-items-center gap-5">
+  <button type="button" class="btn_articulos btn_articulos_activos btn btn-lg ">Articulos Activos</button>
+  <button type="button" class="btn_articulos btn_articulos_inactivos btn_articulos_activos btn btn-lg ">Articulos Inactivos</button>
+</div>
+
 <!--Actualizar Articulo-->
 <section class="her align-items-stretch">
   <div class="container">
     <div id="contenedorActualizar" style="display:none;"><!--oculta el display hasta que se haga una accion-->
       <h1>Actualizar Articulo</h1>
       <form id="actualizarArticuloForm" class="card p-4 shadow bg_formulario">
-        <input type="hidden" id="actualizar_id"> <!--hidden oculta al usuario este campo del formulario para que no vea el id-->
+        
         <div class="row">
           <div class="col-md-3 mb-3">
             <label class="form-label">Nombre:</label>
@@ -115,11 +116,11 @@
             <input class="form-control" type="text" id="actualizar_descripcion">
           </div>
 
-          <div class="col-md-2 mb-3">
+          <!-- <div class="col-md-2 mb-3">
             <label class="form-label">Stock:</label>
             <input class="form-control" type="number" id="actualizar_stock">
           </div>
-        </div>
+        </div> -->
 
         <button type="submit" class="btn boton_submit col-md-3 mx-auto">
           Actualizar Articulo
@@ -142,7 +143,7 @@
                         <table class="table table-striped table-bordered" id="tabla_articulo">
                             <thead>
                             <tr>
-                                <th>ID Articulo</th>
+                                <th>Id</th>
                                 <th>Nombre</th>
                                 <th>Precio</th>
                                 <th>Marca</th>

@@ -15,6 +15,8 @@ async function obtener_articulos() {
         console.error("Error al obtener articulos:", error);
     }
 }
+//ID ARTICULO
+let idArticuloActual = null;
 
 //Function para mostrar los articulos
 
@@ -32,7 +34,7 @@ function mostrar_articulos(articulos){
             <td>${articulo.marca_articulo}</td>
             <td>${articulo.descripcion_articulo}</td>
             <td>
-                <button class="btn btn-warning btn-sm"
+                <button class="btn btn-outline-warning text-dark btn-sm"
                 onclick="mostrarFormularioActualizar(
                     ${articulo.id_articulo},
                     '${articulo.nombre_articulo}',
@@ -43,7 +45,7 @@ function mostrar_articulos(articulos){
                 )">
                 Editar
                 </button>
-                <button onclick="eliminarArticulo(${articulo.id_articulo})">
+                <button class="btn btn-outline-danger text-dark btn-sm" onclick="eliminarArticulo(${articulo.id_articulo})">
                     Eliminar
                 </button>
             </td>
@@ -68,7 +70,9 @@ async function eliminarArticulo(id){
             throw new Error(
                 "No se pudo eliminar el articulo"
             );}
-        
+
+        const datos = await respuesta.json();
+        alert(datos.mensaje);
         //Sea cual sea la respuesta recarga nuevamente la tabla
         obtener_articulos();
 
@@ -82,19 +86,22 @@ async function eliminarArticulo(id){
 function mostrarFormularioActualizar(
     id,nombre,precio,marca,descripcion,stock
 ){
+    
     document.getElementById("contenedorActualizar").style.display="block";
-    document.getElementById("actualizar_id").value = id;
+    idArticuloActual=id;
     document.getElementById("actualizar_nombre").value = nombre;
     document.getElementById("actualizar_precio").value = precio;
     document.getElementById("actualizar_marca").value = marca;
     document.getElementById("actualizar_descripcion").value = descripcion;
-    document.getElementById("actualizar_stock").value = stock;
+    // document.getElementById("actualizar_stock").value = stock;
 }
 //Funcion PUT para actualizar Articulo
 document.getElementById("actualizarArticuloForm").addEventListener("submit",async function(event) {
     event.preventDefault();
-    const id =
-        document.getElementById("actualizar_id").value;
+        
+    // const id =
+    //     document.getElementById("actualizar_id").value;
+
 
     const datosActualizados = {
 
@@ -110,12 +117,12 @@ document.getElementById("actualizarArticuloForm").addEventListener("submit",asyn
         descripcion_articulo:
             document.getElementById("actualizar_descripcion").value,
 
-        stock:
-            parseInt(document.getElementById("actualizar_stock").value)
+        // stock:
+        //     parseInt(document.getElementById("actualizar_stock").value)
     };
     try{
         const response = await fetch(
-            `http://127.0.0.1:8000/articulos/${id}`,
+            `http://127.0.0.1:8000/articulos/${idArticuloActual}`,
             {
                 method:"PUT",
                 headers:{
@@ -147,7 +154,6 @@ document.getElementById("articuloForm").addEventListener("submit",
         const formulario = event.target;
         
         const nuevoArticulo = {
-            id_articulo:parseInt(formulario.id_articulo.value),
             nombre_articulo:formulario.nombre_articulo.value,
             precio_articulo:parseInt(formulario.precio_articulo.value),
             marca_articulo:formulario.marca_articulo.value,

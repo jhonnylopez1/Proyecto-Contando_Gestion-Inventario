@@ -127,7 +127,10 @@ p {
   color: white;
   background-color: #1b1b32;
   margin-top: 1.5rem;
-  
-  
-  
+}
+/*Articulos*/
+.btn_articulos{
+  background-color: #aac9ff;
+  font-weight: bold;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
