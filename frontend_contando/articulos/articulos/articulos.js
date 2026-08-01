@@ -3,24 +3,29 @@
 const URL_articulos = "http://127.0.0.1:8000/articulos";
 
 //Function obtener articulos del backend
-async function obtener_articulos() {
+async function obtener_articulos(estado) {
     try {
-        const response=await fetch(URL_articulos); //peticion al backend
+        const response=await fetch(`${URL_articulos}?estado=${estado}`); //peticion al backend
 
         const articulos=await response.json(); //convierte respuesta en json
 
-        mostrar_articulos(articulos);
+        mostrar_articulos(articulos,estado);
     }
     catch(error) {
         console.error("Error al obtener articulos:", error);
     }
 }
+//MOSTRAR ARTICULOS ACTIVOS
+document.querySelector(".btn_articulos_activos").addEventListener("click",()=>obtener_articulos(1));
+//MOSTRAR ARTICULOS INACTIVOS
+document.querySelector(".btn_articulos_inactivos").addEventListener("click",()=>obtener_articulos(0));
+
 //ID ARTICULO
 let idArticuloActual = null;
 
 //Function para mostrar los articulos
 
-function mostrar_articulos(articulos){
+function mostrar_articulos(articulos,estado){
     const tabla_articulo = document.querySelector("#tabla_articulo tbody"); //seleccionar donde voy a insertar los articulos
 
     tabla_articulo.innerHTML=""; //limpiar la tabla por si ya tenia algun dato
@@ -33,27 +38,38 @@ function mostrar_articulos(articulos){
             <td>${articulo.precio_articulo}</td>
             <td>${articulo.marca_articulo}</td>
             <td>${articulo.descripcion_articulo}</td>
-            <td>
-                <button class="btn btn-outline-warning text-dark btn-sm"
-                onclick="mostrarFormularioActualizar(
-                    ${articulo.id_articulo},
-                    '${articulo.nombre_articulo}',
-                    ${articulo.precio_articulo},
-                    '${articulo.marca_articulo}',
-                    '${articulo.descripcion_articulo}',
-                    ${articulo.stock}
-                )">
-                Editar
-                </button>
-                <button class="btn btn-outline-danger text-dark btn-sm" onclick="eliminarArticulo(${articulo.id_articulo})">
-                    Eliminar
-                </button>
-            </td>
+            ${crear_botones(estado,articulo)}
+            
         `;
 
         tabla_articulo.appendChild(fila);
     });
 }
+//Funcion para crear botones e insertarlos en la funcion mostrar articulos
+function crear_botones(estado,articulo){
+    if (estado==1){
+        return `
+            <td>
+            <button class="btn btn-outline-warning text-dark btn-sm"
+            onclick="mostrarFormularioActualizar(
+                ${articulo.id_articulo},
+                '${articulo.nombre_articulo}',
+                ${articulo.precio_articulo},
+                '${articulo.marca_articulo}',
+                '${articulo.descripcion_articulo}',
+                ${articulo.stock}
+            )">
+            Editar
+            </button>
+            <button class="btn btn-outline-danger text-dark btn-sm" onclick="eliminarArticulo(${articulo.id_articulo})">
+                Eliminar
+            </button>
+            </td>
+        `
+        
+    }
+
+};
 
 
 
@@ -184,4 +200,4 @@ document.getElementById("articuloForm").addEventListener("submit",
     }
 );
 
-document.addEventListener("DOMContentLoaded", obtener_articulos);
+// document.addEventListener("DOMContentLoaded", obtener_articulos);

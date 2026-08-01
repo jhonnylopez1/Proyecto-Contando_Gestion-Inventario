@@ -20,7 +20,7 @@ router = APIRouter(
 def get_articulos(estado:int):
     try:
         with Session(engine) as session:
-            articulos = session.exec(select(Articulo).where(Articulo.estado=={estado})).all() #Trae solo los articulos activos, con estado 1
+            articulos = session.exec(select(Articulo).where(Articulo.estado==estado)).all() #Trae solo los articulos activos, con estado 1
             return articulos
     except Exception as e:
         raise HTTPException(
