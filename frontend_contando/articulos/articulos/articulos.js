@@ -15,10 +15,33 @@ async function obtener_articulos(estado) {
         console.error("Error al obtener articulos:", error);
     }
 }
+const tabla_Articulos =document.getElementById("tabla_Articulos")
+//Boton Activo e Inactivo Estilo
+const botonActivos = document.querySelector(".btn_articulos_activos");
+const botonInactivos = document.querySelector(".btn_articulos_inactivos");
+
 //MOSTRAR ARTICULOS ACTIVOS
-document.querySelector(".btn_articulos_activos").addEventListener("click",()=>obtener_articulos(1));
+botonActivos.addEventListener("click", () => {
+
+    tabla_Articulos.style.display = "block";
+
+    botonActivos.classList.add("btn_articulo_seleccionado");
+    botonInactivos.classList.remove("btn_articulo_seleccionado");
+
+
+    obtener_articulos(1);
+});
+
 //MOSTRAR ARTICULOS INACTIVOS
-document.querySelector(".btn_articulos_inactivos").addEventListener("click",()=>obtener_articulos(0));
+botonInactivos.addEventListener("click", () => {
+
+    tabla_Articulos.style.display = "block";
+
+    botonInactivos.classList.add("btn_articulo_seleccionado");
+    botonActivos.classList.remove("btn_articulo_seleccionado");
+
+    obtener_articulos(0);
+});
 
 //ID ARTICULO
 let idArticuloActual = null;
@@ -68,11 +91,40 @@ function crear_botones(estado,articulo){
         `
         
     }
+    else if (estado==0){
+        return `
+            <td>
+                <button class="btn btn-outline-success text-dark btn-sm" onclick="reactivar_articulo_inactivo(${articulo.id_articulo})">
+                    Reactivar
+                </button>
+            </td>
+        `
+    }
 
 };
-
-
-
+//Funcion para reactivar articulo inactivo
+async function reactivar_articulo_inactivo(id) {
+    try{
+        const respuesta = await fetch(
+            `http://127.0.0.1:8000/articulos/${id}/reactivar`,
+            {
+                method:"PUT",
+                headers:{
+                    "Content-Type":"application/json"
+                }
+            }
+        );
+        if(!respuesta.ok){
+            throw new Error("Error al actualizar")
+        }
+        alert("Articulo Reactivado");
+        obtener_articulos(estado=0);
+    }catch(error){
+        console.error(error);
+        alert("Error al actualizar el articulo")
+    }
+         
+}
 
 //Funcion para eliminar Articulos(Desactivarlos)
 async function eliminarArticulo(id){
@@ -90,7 +142,7 @@ async function eliminarArticulo(id){
         const datos = await respuesta.json();
         alert(datos.mensaje);
         //Sea cual sea la respuesta recarga nuevamente la tabla
-        obtener_articulos();
+        obtener_articulos(estado=1);
 
         }catch(error){
             console.error("Error:",error);

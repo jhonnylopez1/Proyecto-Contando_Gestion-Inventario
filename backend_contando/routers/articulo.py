@@ -20,7 +20,7 @@ router = APIRouter(
 def get_articulos(estado:int):
     try:
         with Session(engine) as session:
-            articulos = session.exec(select(Articulo).where(Articulo.estado==estado)).all() #Trae solo los articulos activos, con estado 1
+            articulos = session.exec(select(Articulo).where(Articulo.estado==estado )).all() #Trae solo los articulos activos, con estado 1
             return articulos
     except Exception as e:
         raise HTTPException(
@@ -83,15 +83,35 @@ def actualizar_articulo(id_articulo:int, data:Articulos_Actualizar):
 
             return articulo
 
-##############NOTA: ya quedo el router, la proxima vez debo aprender a conectar esto con el Frontend
-
     except Exception as e:
         print("ERROR REAL",e)
         raise HTTPException(
             status_code=500,
             detail=f"Error al eliminar articulo:{str(e)}"
         )
+############# Reactivar Articulo Inactivo
+@router.put("/{id_articulo}/reactivar")
+def reactivar_articulo(id_articulo:int):
+    try:
+        with Session(engine) as session:
+            articulo = session.get(Articulo,id_articulo)
+            if not articulo:
+                raise HTTPException(
+                    status_code=404,
+                    detail="Articulo no encontrado"
+                )
+            articulo.estado=1
+            session.commit()
+            session.refresh(articulo)
 
+            return {"mensaje":"Articulo activado"}
+    except Exception as e:
+            print("ERROR REAL",e)
+            raise HTTPException(
+                status_code=500,
+                detail=f"Error al reactivar articulo:{str(e)}"
+            )
+##########Ruta para crear articulo
 @router.post("/",response_model=Articulos_Read)
 def crear_articulo(data:ArticuloCrear):
     try:

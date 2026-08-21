@@ -130,7 +130,21 @@ p {
 }
 /*Articulos*/
 .btn_articulos{
-  background-color: #aac9ff;
+  background-color: #f3f8fb;
   font-weight: bold;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  border-color: gray;
+}
+.btn_articulo_seleccionado {
+    background-color: #aac9ff;
+}
+.btn_articulos:hover {
+    background-color:#f3f8fb;
+    color: inherit;
+    border-color: gray;
+    box-shadow: none;
+}
+
+.btn_articulo_seleccionado:hover {
+    background-color: #aac9ff;
 }
