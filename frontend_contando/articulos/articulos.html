@@ -44,10 +44,10 @@
   </nav>
 
 <!--Seccion Hero-->
- <section class="hero align-items-stretch">
+ <section class="hero align-items-stretch seccion_crear_articulo" style="display:block;">
   
-    <div class="container">
-        <div class="row justify-content-center">
+    <div class="container ">
+        <div class="row justify-content-center align-items-center">
           <div class="col-md-12 ">
             <h1>Ingresar Articulo</h1>
             <form id="articuloForm" class="card p-4 shadow bg_formulario">
@@ -85,13 +85,14 @@
 </section>
 
 <div class="d-flex justify-content-center align-items-center gap-5">
+  <button type="button" class="btn_articulos btn_todos_articulos btn btn-lg ">Todos</button>
   <button type="button" class="btn_articulos btn_articulos_activos btn btn-lg ">Articulos Activos</button>
   <button type="button" class="btn_articulos btn_articulos_inactivos btn btn-lg  ">Articulos Inactivos</button>
 </div>
 
 
 
-<section class="hero align-items-stretch">
+<section class="hero align-items-stretch ">
     <div class="container">
         <div id="tabla_Articulos" class="row justify-content-center" style="display:none;">
           <div class="col-md-12 ">
@@ -119,10 +120,61 @@
     </div>
 </section>
 
-<!--Actualizar Articulo-->
+<!-- Actualizar Articulo -->
+<div class="modal fade" id="modalActualizar" tabindex="-1" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content modal_personalizado">
+
+      <div id="contenedorActualizar">
+
+        <h1>Actualizar Articulo</h1>
+
+        <form id="actualizarArticuloForm" class="card p-4 shadow bg_formulario">
+
+          <div class="row">
+
+            <div class="col-md-3 mb-3">
+              <label class="form-label">Nombre:</label>
+              <input class="form-control" type="text" id="actualizar_nombre">
+            </div>
+
+            <div class="col-md-2 mb-3">
+              <label class="form-label">Precio:</label>
+              <input class="form-control" type="number" id="actualizar_precio">
+            </div>
+
+            <div class="col-md-2 mb-3">
+              <label class="form-label">Marca:</label>
+              <input class="form-control" type="text" id="actualizar_marca">
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label class="form-label">Descripción:</label>
+              <input class="form-control" type="text" id="actualizar_descripcion">
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn boton_submit col-md-3 mx-auto">
+            Actualizar Articulo
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Actualizar Articulo
 <section class="her align-items-stretch">
   <div class="container">
-    <div id="contenedorActualizar" style="display:none;"><!--oculta el display hasta que se haga una accion-->
+    <div id="contenedorActualizar" style="display:none;">--oculta el display hasta que se haga una accion-
       <h1>Actualizar Articulo</h1>
       <form id="actualizarArticuloForm" class="card p-4 shadow bg_formulario">
         
@@ -146,12 +198,6 @@
             <input class="form-control" type="text" id="actualizar_descripcion">
           </div>
 
-          <!-- <div class="col-md-2 mb-3">
-            <label class="form-label">Stock:</label>
-            <input class="form-control" type="number" id="actualizar_stock">
-          </div>
-        </div> -->
-
         <button type="submit" class="btn boton_submit col-md-3 mx-auto">
           Actualizar Articulo
 
@@ -160,7 +206,7 @@
       </form>
     </div>
   </div>
-</section>
+</section> -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous">
 </script>

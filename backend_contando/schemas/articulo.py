@@ -24,6 +24,7 @@ class Articulos_Actualizar(BaseModel):
 
 class Articulos_Read(Articulos):
     pass
+    estado:Optional[int]=None
 
 class ArticuloCrear(BaseModel):
     nombre_articulo:str=Field(min_length=2,max_length=50)

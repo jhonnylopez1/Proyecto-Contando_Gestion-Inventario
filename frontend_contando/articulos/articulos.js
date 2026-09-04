@@ -5,7 +5,15 @@ const URL_articulos = "http://127.0.0.1:8000/articulos";
 //Function obtener articulos del backend
 async function obtener_articulos(estado) {
     try {
-        const response=await fetch(`${URL_articulos}?estado=${estado}`); //peticion al backend
+        let url;
+        if (estado !== undefined){
+            url = `${URL_articulos}?estado=${estado}`
+        }
+        else{
+            url=URL_articulos
+        }
+        const response=await fetch(url); //peticion al backend
+        // const response=await fetch(`${URL_articulos}?estado=${estado}`); //peticion al backend
 
         const articulos=await response.json(); //convierte respuesta en json
 
@@ -19,6 +27,13 @@ const tabla_Articulos =document.getElementById("tabla_Articulos")
 //Boton Activo e Inactivo Estilo
 const botonActivos = document.querySelector(".btn_articulos_activos");
 const botonInactivos = document.querySelector(".btn_articulos_inactivos");
+const botonTodos = document.querySelector(".btn_todos_articulos");
+
+//Mostrar todos los articulos
+botonTodos.addEventListener("click",()=>{
+    tabla_Articulos.style.display = "block";
+    obtener_articulos();
+});
 
 //MOSTRAR ARTICULOS ACTIVOS
 botonActivos.addEventListener("click", () => {
@@ -61,13 +76,16 @@ function mostrar_articulos(articulos,estado){
             <td>${articulo.precio_articulo}</td>
             <td>${articulo.marca_articulo}</td>
             <td>${articulo.descripcion_articulo}</td>
-            ${crear_botones(estado,articulo)}
+            ${crear_botones(articulo.estado,articulo)}
             
         `;
 
         tabla_articulo.appendChild(fila);
     });
 }
+
+
+
 //Funcion para crear botones e insertarlos en la funcion mostrar articulos
 function crear_botones(estado,articulo){
     if (estado==1){
@@ -81,7 +99,7 @@ function crear_botones(estado,articulo){
                 '${articulo.marca_articulo}',
                 '${articulo.descripcion_articulo}',
                 ${articulo.stock}
-            )">
+            );document.querySelector('.seccion_crear_articulo').style.display='none'">
             Editar
             </button>
             <button class="btn btn-outline-danger text-dark btn-sm" onclick="eliminarArticulo(${articulo.id_articulo})">
@@ -162,7 +180,22 @@ function mostrarFormularioActualizar(
     document.getElementById("actualizar_marca").value = marca;
     document.getElementById("actualizar_descripcion").value = descripcion;
     // document.getElementById("actualizar_stock").value = stock;
+    //Funcion para abrir el modal de bootstrap
+    const modal = new bootstrap.Modal(
+        document.getElementById("modalActualizar")
+    );
+
+    modal.show();   
 }
+
+// Detectar cuando el modal se cierre
+const modalElemento = document.getElementById("modalActualizar");
+
+modalElemento.addEventListener("hidden.bs.modal", function () {
+    document.querySelector(".seccion_crear_articulo").style.display = "block";
+});
+
+
 //Funcion PUT para actualizar Articulo
 document.getElementById("actualizarArticuloForm").addEventListener("submit",async function(event) {
     event.preventDefault();
@@ -207,6 +240,11 @@ document.getElementById("actualizarArticuloForm").addEventListener("submit",asyn
             "contenedorActualizar"
         ).style.display = "none";
 
+        //################## ocultar modal
+        const modalElement = document.getElementById("modalActualizar");
+        const modal = bootstrap.Modal.getInstance(modalElement);
+        modal.hide();
+        //##################
         obtener_articulos();
     }catch(error){
         console.error(error);

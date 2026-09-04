@@ -1,6 +1,7 @@
 #importaciones necesarias para crear el modulo router para articulo
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
+from typing import List,Optional
 
 from backend_contando.db import engine
 from backend_contando.modelos.articulo import Articulo
@@ -17,10 +18,16 @@ router = APIRouter(
 
 #Se define la ruta get para articulo
 @router.get("/", response_model=list[Articulos_Read])
-def get_articulos(estado:int):
+# def get_articulos(estado:int):
+def get_articulos(estado: Optional[int]=None):
     try:
         with Session(engine) as session:
-            articulos = session.exec(select(Articulo).where(Articulo.estado==estado )).all() #Trae solo los articulos activos, con estado 1
+            # articulos = session.exec(select(Articulo).where(Articulo.estado==estado )).all() #Trae solo los articulos activos, con estado 1
+            articulos = select(Articulo)
+            if estado is not None:
+                articulos=articulos.where(Articulo.estado==estado)
+            articulos = session.exec(articulos).all()
+                                     
             return articulos
     except Exception as e:
         raise HTTPException(

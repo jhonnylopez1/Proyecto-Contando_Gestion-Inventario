@@ -81,7 +81,7 @@
   /*Seccion Hero*/
   .hero{
     background-color:rgb(198, 223, 249);
-    min-height: 450px;
+    min-height: 280px;
     text-align: center;
   }
   
@@ -147,4 +147,15 @@ p {
 
 .btn_articulo_seleccionado:hover {
     background-color: #aac9ff;
+}
+
+.modal_personalizado {
+    background: transparent;
+    border: none;
+}
+.seccion_crear_articulo .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
 }
