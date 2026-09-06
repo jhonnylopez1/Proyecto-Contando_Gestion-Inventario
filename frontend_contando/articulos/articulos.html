@@ -58,12 +58,12 @@
                   <input class="form-control" type="text" name="nombre_articulo" required>
                 </div>
       
-                <div class="col-md-2 mb-3">
+                <div class="col-md-3 mb-3">
                   <label class="form-label">Precio:</label>
                   <input class="form-control" type="number" name="precio_articulo" required>
                 </div>
       
-                <div class="col-md-2 mb-3">
+                <div class="col-md-3 mb-3">
                   <label class="form-label">Marca:</label>
                   <input class="form-control" type="text" name="marca_articulo" required>
                 </div>
@@ -84,16 +84,100 @@
       </div>
 </section>
 
-<div class="d-flex justify-content-center align-items-center gap-5">
-  <button type="button" class="btn_articulos btn_todos_articulos btn btn-lg ">Todos</button>
-  <button type="button" class="btn_articulos btn_articulos_activos btn btn-lg ">Articulos Activos</button>
-  <button type="button" class="btn_articulos btn_articulos_inactivos btn btn-lg  ">Articulos Inactivos</button>
-</div>
 
+<!-- Ver Artículos -->
+<section class="hero align-items-stretch">
 
-
-<section class="hero align-items-stretch ">
     <div class="container">
+
+        <div class="row justify-content-center align-items-center ancho_ver_articulos">
+
+            <div class="col-md-12">
+
+                <!-- Encabezado de la sección -->
+                <div class="text-center mb-4">
+
+                    <h1>Ver Artículos</h1>
+
+                    <p class="text-muted">
+                        Consulta y administra los artículos de tu inventario
+                    </p>
+
+                </div>
+
+
+                <!-- Botones de filtro -->
+                <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap mb-4">
+
+                    <button type="button"
+                            class="btn_articulos btn_todos_articulos btn btn-lg">
+                        Todos
+                    </button>
+
+                    <button type="button"
+                            class="btn_articulos btn_articulos_activos btn btn-lg">
+                        Artículos Activos
+                    </button>
+
+                    <button type="button"
+                            class="btn_articulos btn_articulos_inactivos btn btn-lg">
+                        Artículos Inactivos
+                    </button>
+
+                </div>
+
+
+                <!-- Tabla -->
+                <div id="tabla_Articulos" style="display:none;">
+
+                    <div class="table-responsive">
+                      <input type="text" id="buscadorInventario" class="form-control mb-3" placeholder="Buscar artículo por nombre o descripcion...">
+
+                        <table class="table table-striped table-bordered" id="tabla_articulo">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                    <th>Marca</th>
+                                    <th>Descripción</th>
+                                    <th>Opciones</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="cuerpoArticulos"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+<!-- <section class="hero align-items-stretch ">
+  
+    <div class="container ">
+      <h1>Ver Articulos</h1>
+    <div class="d-flex justify-content-center align-items-center gap-5">
+    
+    <button type="button" class="btn_articulos btn_todos_articulos btn btn-lg ">Todos</button>
+    <button type="button" class="btn_articulos btn_articulos_activos btn btn-lg ">Articulos Activos</button>
+    <button type="button" class="btn_articulos btn_articulos_inactivos btn btn-lg  ">Articulos Inactivos</button>
+    </div>
+    
         <div id="tabla_Articulos" class="row justify-content-center" style="display:none;">
           <div class="col-md-12 ">
             <div class="table-responsive">
@@ -118,18 +202,18 @@
           </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- Actualizar Articulo -->
 <div class="modal fade" id="modalActualizar" tabindex="-1" aria-hidden="true">
 
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
 
     <div class="modal-content modal_personalizado">
 
       <div id="contenedorActualizar">
 
-        <h1>Actualizar Articulo</h1>
+        <h1 id="titulo_actualizar_articulo">Actualizar Articulo</h1>
 
         <form id="actualizarArticuloForm" class="card p-4 shadow bg_formulario">
 
@@ -140,12 +224,12 @@
               <input class="form-control" type="text" id="actualizar_nombre">
             </div>
 
-            <div class="col-md-2 mb-3">
+            <div class="col-md-3 mb-3">
               <label class="form-label">Precio:</label>
               <input class="form-control" type="number" id="actualizar_precio">
             </div>
 
-            <div class="col-md-2 mb-3">
+            <div class="col-md-3 mb-3">
               <label class="form-label">Marca:</label>
               <input class="form-control" type="text" id="actualizar_marca">
             </div>

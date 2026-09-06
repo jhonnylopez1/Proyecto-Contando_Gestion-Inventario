@@ -32,6 +32,9 @@ const botonTodos = document.querySelector(".btn_todos_articulos");
 //Mostrar todos los articulos
 botonTodos.addEventListener("click",()=>{
     tabla_Articulos.style.display = "block";
+    botonTodos.classList.add("btn_articulo_seleccionado")
+    botonInactivos.classList.remove("btn_articulo_seleccionado");
+    botonActivos.classList.remove("btn_articulo_seleccionado");
     obtener_articulos();
 });
 
@@ -42,6 +45,7 @@ botonActivos.addEventListener("click", () => {
 
     botonActivos.classList.add("btn_articulo_seleccionado");
     botonInactivos.classList.remove("btn_articulo_seleccionado");
+    botonTodos.classList.remove("btn_articulo_seleccionado")
 
 
     obtener_articulos(1);
@@ -54,6 +58,7 @@ botonInactivos.addEventListener("click", () => {
 
     botonInactivos.classList.add("btn_articulo_seleccionado");
     botonActivos.classList.remove("btn_articulo_seleccionado");
+    botonTodos.classList.remove("btn_articulo_seleccionado")
 
     obtener_articulos(0);
 });
@@ -120,6 +125,21 @@ function crear_botones(estado,articulo){
     }
 
 };
+//Buscador de Articulos
+document.getElementById("buscadorInventario").addEventListener("keyup", function () {
+    let filtro = this.value.toLowerCase();
+    let filas = document.querySelectorAll("#cuerpoArticulos tr");
+
+    filas.forEach(fila => {
+        let texto = fila.textContent.toLowerCase();
+        if (texto.includes(filtro)) {
+            fila.style.display = "";
+        } else {
+            fila.style.display = "none";
+        }
+    });
+});
+
 //Funcion para reactivar articulo inactivo
 async function reactivar_articulo_inactivo(id) {
     try{
