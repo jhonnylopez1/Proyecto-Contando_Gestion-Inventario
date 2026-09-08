@@ -2,6 +2,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from backend_contando.routers import articulo
+from backend_contando.routers import proveedor
 
 #Se define la api
 app= FastAPI()
@@ -26,3 +27,4 @@ def prueba():
 
 #Endpoint para articulo
 app.include_router(articulo.router)
+app.include_router(proveedor.router)
