@@ -151,10 +151,12 @@ p #respuesta{
     background: transparent;
     border: none;
 }
-.seccion_crear_articulo .container {
+.seccion_crear_articulo .container,
+.seccion_crear_proveedor .container {
     min-height: 200px;
 }
 
-h1#titulo_actualizar_articulo{
+h1#titulo_actualizar_articulo,
+h1#titulo_actualizar_proveedor{
   text-align: center;
 }

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Proveedor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-md" style="background-color: #e3f2fd;" data-bs-theme="light">
+    <div class="container-fluid">
+    
+      <div class="navbar-collapse justify-content-center" id="navbar-toggler">
+        
+        <ul class="navbar-nav ">
+          <li class="nav-item">
+            <a class="nav-link enlace" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link enlace" href="articulo.html">Articulos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="proveedores.html">Proveedores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="inventario.html">Ingresar Facturas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cajero.html">Cajeros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cliente.html">Clientes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ventas.html">Ventas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="stock.html">Stock</a>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+
+<!--Seccion Hero-->
+ <section class="hero align-items-stretch seccion_crear_proveedor" style="display:block;">
+  
+    <div class="container ">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-12 ">
+            <h1>Ingresar Proveedor</h1>
+            <form id="proveedorForm" class="card p-4 shadow bg_formulario">
+              <div class="row">
+              
+                <div class="col-md-3 mb-3">
+                  <label class="form-label">Nombre:</label>
+                  <input class="form-control" type="text" name="nombre_proveedor" required>
+                </div>
+      
+                <div class="col-md-3 mb-3">
+                  <label class="form-label">Telefono:</label>
+                  <input class="form-control" type="tel" name="tel_proveedor" required>
+                </div>
+      
+                <div class="col-md-3 mb-3">
+                  <label class="form-label">Correo:</label>
+                  <input class="form-control" type="text" name="correo_proveedor" required>
+                </div>
+      
+                <div class="col-md-3 mb-3">
+                  <label class="form-label">Direccion:</label>
+                  <input class="form-control" type="text" name="direccion_proveedor" required>
+                </div>
+
+      
+              </div>
+              
+              <button type="submit" class="btn boton_submit col-md-3 mx-auto">Guardar Proveedor</button>
+            </form>
+            <p id="respuesta"></p>
+          </div>
+        </div>
+      </div>
+</section>
+
+
+<!-- Ver Proveedores -->
+<section class="hero align-items-stretch">
+
+    <div class="container">
+
+        <div class="row justify-content-center align-items-center ancho_ver_articulos">
+
+            <div class="col-md-12">
+
+                <!-- Encabezado de la sección -->
+                <div class="text-center mb-4">
+
+                    <h1>Ver Proveedores</h1>
+
+                    <p class="text-muted">
+                        Consulta y administra los proveedores
+                    </p>
+
+                </div>
+<!--TERMINAR DE REVISAR LAS CLASES DE AQUI HACIA ABAJOOOOOOOOOOO-->
+
+                <!-- Botones de filtro -->
+                <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap mb-4">
+
+                    <button type="button"
+                            class="btn_articulos btn_todos_proveedores btn btn-lg">
+                        Todos
+                    </button>
+
+                    <button type="button"
+                            class="btn_articulos btn_proveedores_activos btn btn-lg">
+                        Proveedores Activos
+                    </button>
+
+                    <button type="button"
+                            class="btn_articulos btn_proveedores_inactivos btn btn-lg">
+                        Proveedores Inactivos
+                    </button>
+
+                </div>
+
+
+                <!-- Tabla -->
+                <div id="tabla_Proveedores" style="display:none;">
+
+                    <div class="table-responsive">
+                      <input type="text" id="buscadorInventario" class="form-control mb-3" placeholder="Buscar proveedor por nombre o descripcion...">
+
+                        <table class="table table-striped table-bordered" id="tabla_proveedor">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Telefono</th>
+                                    <th>Correo</th>
+                                    <th>Direccion</th>
+                                    <th>Opciones</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="cuerpoProveedores"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+<!-- <section class="hero align-items-stretch ">
+  
+    <div class="container ">
+      <h1>Ver Articulos</h1>
+    <div class="d-flex justify-content-center align-items-center gap-5">
+    
+    <button type="button" class="btn_articulos btn_todos_articulos btn btn-lg ">Todos</button>
+    <button type="button" class="btn_articulos btn_articulos_activos btn btn-lg ">Articulos Activos</button>
+    <button type="button" class="btn_articulos btn_articulos_inactivos btn btn-lg  ">Articulos Inactivos</button>
+    </div>
+    
+        <div id="tabla_Articulos" class="row justify-content-center" style="display:none;">
+          <div class="col-md-12 ">
+            <div class="table-responsive">
+                <h1>Articulos</h1>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="tabla_articulo">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Marca</th>
+                                <th>Descripcion</th>
+                                <th>Opciones</th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                
+            </div>
+          </div>
+        </div>
+    </div>
+</section> -->
+
+<!-- Actualizar Articulo -->
+<div class="modal fade" id="modalActualizar" tabindex="-1" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+
+    <div class="modal-content modal_personalizado">
+
+      <div id="contenedorActualizar">
+
+        <h1 id="titulo_actualizar_proveedor">Actualizar Proveedor</h1>
+
+        <form id="actualizarProveedorForm" class="card p-4 shadow bg_formulario">
+
+          <div class="row">
+
+            <div class="col-md-3 mb-3">
+              <label class="form-label">Nombre:</label>
+              <input class="form-control" type="text" id="actualizar_nombre">
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label class="form-label">Precio:</label>
+              <input class="form-control" type="number" id="actualizar_telefono">
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label class="form-label">Marca:</label>
+              <input class="form-control" type="text" id="actualizar_correo">
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label class="form-label">Descripción:</label>
+              <input class="form-control" type="text" id="actualizar_direccion">
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn boton_submit col-md-3 mx-auto">
+            Actualizar Proveedor
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Actualizar Articulo
+<section class="her align-items-stretch">
+  <div class="container">
+    <div id="contenedorActualizar" style="display:none;">--oculta el display hasta que se haga una accion-
+      <h1>Actualizar Articulo</h1>
+      <form id="actualizarArticuloForm" class="card p-4 shadow bg_formulario">
+        
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Nombre:</label>
+            <input class="form-control" type="text" id="actualizar_nombre">
+          </div>
+          <div class="col-md-2 mb-3">
+            <label class="form-label">Precio:</label>
+            <input class="form-control" type="number" id="actualizar_precio">
+          </div>
+
+          <div class="col-md-2 mb-3">
+            <label class="form-label">Marca:</label>
+            <input class="form-control" type="text" id="actualizar_marca">
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Descripción:</label>
+            <input class="form-control" type="text" id="actualizar_descripcion">
+          </div>
+
+        <button type="submit" class="btn boton_submit col-md-3 mx-auto">
+          Actualizar Articulo
+
+        </button>
+
+      </form>
+    </div>
+  </div>
+</section> -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous">
+</script>
+<footer class="text-center py-5">
+    © 2025 Jhonny Andres Lopez | Todos los derechos reservados.
+</footer>
+<script src="./proveedor.js"></script>
+</body>
+</html>
