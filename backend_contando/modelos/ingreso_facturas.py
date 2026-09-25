@@ -6,6 +6,10 @@ class EstadoPago(str,Enum):
     pendiente="pendiente"
     pagada="pagada"
 
+class EstadoIngreso(str,Enum):
+    activa="activa"
+    anulada="anulada"
+
 class IngresoCompra(SQLModel,table=True):
     __tablename__="ingreso_compra"
     id_ingreso_compra:int=Field(primary_key=True)
@@ -14,6 +18,7 @@ class IngresoCompra(SQLModel,table=True):
     fecha_ingreso:date
     estado_pago:EstadoPago
     total:int=0
+    estado_ingreso:EstadoIngreso=EstadoIngreso.activa
 
 class DetalleIngreso(SQLModel,table=True):
     __tablename__="detalle_ingreso"
